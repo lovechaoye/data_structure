@@ -21,7 +21,7 @@ typedef struct ArrayTree
 //都比较麻烦.所以一般也不用
 
 
-
+//以下两种均是二叉树的存储形式
 
 //二叉链表,树最常用的存储结构
 typedef struct BiTNode{
