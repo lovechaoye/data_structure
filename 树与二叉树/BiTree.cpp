@@ -16,11 +16,18 @@ void InOrderReverse(BiTree Root){
     }
 }
 
+void PostOrderReverse(BiTree Root){
+      if(Root){
+        PostOrder(Root->lchild);
+        PostOrder(Root->rchild);
+        Visit(Root->data);
+    }
+}
 //----------------------------递归遍历树的结构-------------------------------------------
 void PreOrder(BiTree LChild){
     if (LChild)
     {
-        Visit(LChild->data);//局部的根
+        Visit(LChild);//局部的根
         if(LChild->lchild){
             PreOrder(LChild->lchild);
         }
@@ -37,7 +44,7 @@ void InOrder(BiTree LChild){
         if(LChild->lchild){
             InOrder(LChild->lchild);
         }
-        Visit(LChild->data);
+        Visit(LChild);
         if(LChild->rchild){
             InOrder(LChild->rchild);
         }
@@ -53,7 +60,7 @@ void PostOrder(BiTree LChild){
         if(LChild->rchild){
             PostOrder(LChild->rchild);
         }
-        Visit(LChild->data);
+        Visit(LChild);
     }
     
 }
@@ -62,4 +69,9 @@ void PostOrder(BiTree LChild){
  * 观察上述三种遍历的方式,可以发现实际访问结点数据的方法位置在方法内的位置和遍历方式是一样的
  * if语句中的均为递归调用
 **/
-//----------------------------------------------------------------------
+
+//访问结点内容的方法(下面是最简单的),数据的查找其实就是建立在数据遍历之上的,对应就是修改Visit方法的实现,检索到目标结点再return而已
+void Visit(BiTree node){
+    printf("%c\n",node->data);
+}
+

@@ -51,29 +51,13 @@ void InOrderReverse(BiTree Root);
 void PostOrderReverse(BiTree Root);
 
 //访问根结点
-void Visit(ElemType data);
+void Visit(BiTree Child);
 
-//前序遍历所有左结点
+//前序遍历所有结点
 void PreOrder(BiTree LChild);
 
-//前序遍历所有右结点
-void PreOrder(BiTree RChild);
-
-//中序遍历所有左结点
+//中序遍历所有结点
 void InOrder(BiTree LChild);
 
-//中序遍历所有右结点
-void InOrder(BiTree RChild);
-
-//后序遍历所有左结点
+//后序遍历所有结点
 void PostOrder(BiTree LChild);
-
-//后序遍历所有右结点
-void PostOrder(BiTree RChild);
-
-//遍历所有左结点
-void LChildReverse();
-
-//遍历所有右结点
-void RChildReverse();
-
