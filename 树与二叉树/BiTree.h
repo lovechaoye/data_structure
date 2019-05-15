@@ -10,8 +10,7 @@
 #define _PostOrderReverse "后续遍历"   //LRD
 //树的存储结构分为两种,顺序存储和链式存储
 //树形结构是有方向的,从根节点向下
-
-
+//顺序存储依赖于二叉树的第五性质
 typedef struct ArrayTree
 {
     ElemType array[MAX_TREE_SIZE];
