@@ -182,3 +182,29 @@ void IPreOrder_loop(BiTree root){
         }
     } while(p!=NULL||top!=0);
 }
+/*--------------------------------后序遍历的非递归实现----------------------------------------------*/
+void IPostOrder_goto(BiTree root){
+    int top=0;
+    BiTree p=root;
+    L1:if(p!=NULL){
+        top=top+2;
+        if(top>m) return;/*栈满溢出*/
+        s[top-1]=p->lchild;
+        S[TOP]=L3；
+        goto L1;
+
+        L2:top=top+1;
+        if(top>m) return;/*栈满溢出*/
+        s[top-1]=p->rchild;
+        goto L1;
+
+        L3:Visit(p->data);
+    }
+    L4:if(top!=0){
+        p=s[top-1];
+        addr=s[top];
+        top=top-2;
+        
+        goto L2;
+    }
+}
