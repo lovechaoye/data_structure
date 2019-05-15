@@ -32,7 +32,7 @@ void PreOrder(BiTree LChild){
             PreOrder(LChild->lchild);
         }
         if (LChild->rchild)
-        {
+        { 
          PreOrder(LChild->rchild);
         }
     }
@@ -75,3 +75,110 @@ void Visit(BiTree node){
     printf("%c\n",node->data);
 }
 
+
+void IPreOrder(BiTree root){
+    int top=0;
+    BiTree p=root;
+    if(p){
+        L2:Visit(p->data);/*访问根*/
+        top=top+2;
+        s[top-1]=p->lchild;
+        s[top]=
+    }
+}
+
+/**
+ *处理递归问题的方法是自己手动增加一个工作栈,因为递归调用的特点是先掉后出,到递归终止条件从最后一级往最开始的一级返回,这个刚好是先进后出的特点,与栈的特点一致 
+**/
+
+/*-------------------------非递归实现中序遍历--------------------------------------*/
+void IInOrder_goto(BiTree root){
+    int top=0;
+    BiTree p=root;
+     L1:if (p)  /*遍历左子树*/
+     {
+        top=top+2;
+        if(top>m) return;/*栈满溢出*/
+        s[top-1]=p;     /*本层参数进栈*/
+        s[top]=L2;      /*返回地址进栈*/
+        p=p->lchild     /*给下层参数赋值*/
+        goto L1;        /*转向开始*/
+        L2:Visit(p->data);/*访问根*/
+        top=top+2;
+        if(top>m)  return;/*栈满溢出处理*/
+        s[top-1]=p;/*遍历右子树*/
+        s[top]=L3;
+        p=p->rchild;
+        goto L1;
+     }
+     L3:if(top){
+        addr=s[top];
+        p=s[top-1];/*取出返回地址*/
+        top=top-2; /*退出本层参数*/
+        goto addr;
+     }
+}
+
+void IInOrder_loop(BiTree root){
+    int top=0;
+    BiTree p=root;
+    do{
+        while (p!=NULL)
+        {
+            if(top>m) return;
+            top=top+1;
+            s[top]=p;
+            p=p->lchild;
+        }/*遍历右子树*/
+        if (top!=0)
+        {
+            p=s[top];
+            top=top-1;
+            Visit(p->data);/*访问根节点*/
+            p=p->rchild;
+        }
+    }while(p!=NULL||top!=0);
+}
+/*--------------------------------前序遍历的非递归实现----------------------------------------------*/
+void IPreOrder_goto(BiTree root){
+    int top=0;
+    BiTree p=root;
+L1:if(p){
+        Visit(p->data);/*访问根节点*/
+        if(p->rchild!=NULL){
+            top=top+2;
+            if(top>m) return;/*栈满溢出*/
+            s[top-1]=p->rchild;
+            s[top]=L1;
+        }
+        p=p->lchild;
+        goto L1;
+    }
+    if(top!=0){
+        addr=s[top];
+        p=s[top-1];
+        goto add;
+    }
+}
+
+void IPreOrder_loop(BiTree root){
+    int top=0;
+    BiTree p=root;
+    do
+    {
+        while (p!=NULL)
+        {
+            Visit(p->data);/*访问根节点*/
+            if(p->rchild!=NULL){
+                top=top+1;
+                if(top>m) return;/*栈满溢出*/
+                s[top]=p->rchild;
+            }
+            p=p->lchild;
+        }
+        if(top!=0){
+            p=s[top];
+            top=top-1;
+        }
+    } while(p!=NULL||top!=0);
+}
