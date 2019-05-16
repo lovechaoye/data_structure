@@ -208,3 +208,118 @@ void IPostOrder_goto(BiTree root){
         goto L2;
     }
 }
+
+/*-------------------观察递归的伪代码------------------------------*/
+void PreOrder(BiTree root)
+{ 1.  Visit(root);
+  2.  if(root->lchild) PreOrder(root->lchild);
+  3.  if(root->rchild) PreOrder(root->rchild);
+4.}
+
+void InOrder(BiTree root)
+{ 1.  if(root->lchild) InOrder(root->lchild);
+  2.  Visit(root);
+  3.  if(root->rchild) InOrder(root->rchild);
+4.}
+
+void PostOrder(BiTree root)
+{ 1.  if(root->lchild) InOrder(root->lchild);
+  2.  if(root->rchild) InOrder(root->rchild);
+  3.  Visit(root);
+4.}
+/*根据上述代码画调用堆栈图,即可模拟出每一种递归调用的特点*/
+
+/*-----------------goto语句实现非递归调用--------------------------*/
+#define m 栈的最大容量
+void PreOrder_goto(BiTree root){
+    int top=0;
+    BiTree p=root;
+    Stack s;
+    
+L1: if(p!=NULL){
+        Visit(p->data);
+        top=top+2;
+        if(top>m) return;
+        s[top-1]=p;
+        s[top]=L2;//访问右子树的地址
+        p=p->lchild;
+        goto L1;
+
+    L2: top=top+2;
+        if(top>m) return;
+        s[top-1]=p;
+        s[top]=L3;//结束的地址
+        p=p->rchild;
+        goto L1;
+    }
+
+    L3:if(top>0){
+        addr=s[top];
+        p=s[top-1];
+        top=top-2;
+        goto addr;
+    }
+}
+
+void InOrder_goto(BiTree root){
+    int top=0;
+    BiTree p=root;
+    Stack s;
+
+L1:if(p!=NULL){
+        top=top+2;
+        if(top>m) return;
+        s[top-1]=p;
+        s[top]=L2;
+        p=p->lchild;
+        goto L1;
+
+
+        L2:Visit(p->data);
+        top=top+2;
+        if(top>m) return;
+        s[top-1]=p;
+        s[top]=L3;
+        p=p->rchild;
+        goto L1;
+
+    }
+
+    L3:if(top>0){
+        p=s[top-1];
+        addr=s[top];
+        top=top-2;
+        goto addr;
+    }
+}
+
+void PostOrder_goto(BiTree root){
+    int top=0;
+    BiTree p=root;
+    Stack s;
+
+ L1:if(p!=NULL){
+        top=top+2;
+        if(top>m) return;
+        s[top-1]=p;
+        s[top]=L2;//访问右结点的地址
+        p=p->lchild;
+        goto L1;
+
+
+     L2:top=top+2;
+        if(top>m) return;
+        s[top-1]=p;
+        s[top]=L3;//输出的地址
+        p=p->rchild; 
+        goto L1;
+     L3:Visit(p->data);
+    }
+
+    if(top>0){
+        addr=s[top];
+        p=s[top-1];
+        top=top-2;
+        goto addr;
+    }
+}
