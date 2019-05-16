@@ -266,20 +266,20 @@ void InOrder_goto(BiTree root){
     BiTree p=root;
     Stack s;
 
-L1:if(p!=NULL){
+L1:if(p!=NULL){  
         top=top+2;
         if(top>m) return;
-        s[top-1]=p;
+        s[top-1]=p;  //输出结点内容的地址
         s[top]=L2;
         p=p->lchild;
         goto L1;
 
 
-        L2:Visit(p->data);
+        L2:Visit(p->data);  
         top=top+2;
         if(top>m) return;
         s[top-1]=p;
-        s[top]=L3;
+        s[top]=L3;  //结束访问的地址
         p=p->rchild;
         goto L1;
 
