@@ -14,7 +14,7 @@ void CreateSqList(pSqList L,int n){
     int i=0;
     while (i<n)
     {
-       scanf("%d",L->elem+n);
+       scanf("%d",L->elem+i);
         L->length++;
         i++;
     }

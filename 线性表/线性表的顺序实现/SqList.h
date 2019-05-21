@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_DEPRECATE
 #include<stdio.h>
 #include<stdlib.h>
 //线性表的顺序表示与实现
