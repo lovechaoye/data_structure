@@ -1,7 +1,7 @@
 #include "SqList.h"
 void InitSqList(pSqList L){//初始化一个空的线性表
-    L->elem=(pSqList)malloc(sizeof(ElemType)*List_Size);
-    if (!elem)
+    L->elem=(ElemType*)malloc(sizeof(ElemType)*List_Size);
+    if (!L->elem)
     {
         exit(EXIT_FAILURE);
     }
@@ -77,7 +77,7 @@ void DispSqList(pSqList L){
     int i=0;
     while (i < L->length)
     {
-         printf("%d\n",*(L->elem+i);
+         printf("%d\n",*(L->elem+i));
          i++;
     }
 }
