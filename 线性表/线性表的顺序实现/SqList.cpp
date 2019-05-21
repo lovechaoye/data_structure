@@ -75,11 +75,12 @@ int LocateElem(pSqList L,ElemType x){
 
 void DispSqList(pSqList L){
     int i=0;
-    while (i < L->length)
-    {
-         printf("%d\n",*(L->elem+i));
-         i++;
-    }
+   while (i < L->length-1)
+	{
+		printf("%d,", *(L->elem + i));
+		i++;
+	}
+	printf("%d\n", *(L->elem +i));
 }
 
 
