@@ -1,7 +1,8 @@
+#define _CRT_SECURE_NO_DEPRECATE
 #include"Linklist.h"
 #include<stdlib.h>
 #include<stdio.h>
-#define _CRT_SECURE_NO_DEPRECATE
+
 int InitLinkList(Linklist L) {
 	Node* head = (Node*)malloc(sizeof(Node));
 	if (!head)
@@ -18,11 +19,19 @@ Node*  CreateLinkList1() {
 	Node *head,*tail,*p;
 	int e;
 	head = (Node*)malloc(sizeof(Node));
+	if (!head)
+	{
+		return NULL;
+	}
 	tail = head;
 	scanf("%d", &e);
 	while (e!=0)
 	{
 		p=(Node*)malloc(sizeof(Node));
+		if (!p)
+		{
+			return NULL;
+		}
 		p->data = e;
 		tail->next = p;
 		tail = p;
@@ -36,12 +45,20 @@ Node*  CreateLinkList1() {
 Node* CreateLinkList2() {
 	Node* head, * p;
 	head = (Node*)malloc(sizeof(Node));
+	if (!head)
+	{
+		return NULL;
+	}
 	head->next = NULL;
 	int e;
 	scanf("%d", &e);
 	while (e != 0)
 	{
 		p = (Node*)malloc(sizeof(Node));
+		if (!p)
+		{
+			return NULL;
+		}
 		p->data = e;
 		p->next = head->next;
 		head->next = p;
