@@ -1,13 +1,13 @@
 #include"LinkList.h"
-#include<stdlib.h>
-#include<stdio.h>
-void InitLinkList(LinkList L) {
-	L = (Node*)malloc(sizeof(Node));
-	if (!L)
+
+void InitLinkList(LinkList* L) {
+	Node* p=(Node*)malloc(sizeof(Node));
+	if (!p)
 	{
 		return;
 	}
-	L->next = NULL;
+	*L = p;
+	(*L)->next = NULL;
 }
 
 int LinkListlen(LinkList L) {
@@ -106,8 +106,10 @@ void DispLinkList(LinkList L) {
 	p = L->next;
 	while (p)
 	{
-		printf("%d\n",p->data);
+		printf("%d ",p->data);
+		p = p->next;
 	}
+	printf("\n");
 }
 
 void CreateLinkListHead(LinkList L, int n) {
@@ -138,6 +140,7 @@ void CreateLinkListTail(LinkList L, int n) {
 		{
 			return;
 		}
+		p->next = NULL;
 		scanf("%d",&p->data);
 		tail->next = p;
 		tail = p;

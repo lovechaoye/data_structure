@@ -1,4 +1,7 @@
 #pragma once
+#define _CRT_SECURE_NO_DEPRECATE
+#include<stdlib.h>
+#include<stdio.h>
 typedef int ElemType;
 typedef  struct Node {
 	ElemType data;
@@ -9,7 +12,7 @@ typedef  struct Node {
 #define OK 1
 
 //初始化一个带头单链表，返回该头指针
-void InitLinkList(LinkList L);
+void InitLinkList(LinkList* L);
 
 //求表长
 int LinkListlen(LinkList L);
