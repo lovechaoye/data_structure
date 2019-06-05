@@ -1,12 +1,14 @@
 #define _CRT_SECURE_NO_DEPRECATE
 #include<stdio.h>
 #include<stdlib.h>
+#include<Windows.h>
 //线性表的顺序表示与实现
 typedef int ElemType;
 #define List_Size 100//线性表存储空间的初始化分配量
 #define ListIncrement 10//线性表存储空间的分配增量
 #define ERROR 0
 #define OK 1
+HANDLE window;
 typedef struct {
     ElemType *elem;//存放线性表的数组基地址
     int length;//线性表的当前长度
