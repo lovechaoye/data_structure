@@ -21,6 +21,7 @@ void CreateSqList(pSqList L,int n){
 }
 
 void DestroySqList(pSqList L){
+    CreateThread
     free(L->elem);//注意:free和malloc必须一一对应,不要free非malloc分配的指针
 }
 
