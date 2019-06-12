@@ -17,7 +17,7 @@ int StackEmpty(SqStack* s);
 
 int push(SqStack* s,ElemType e );
 
-ElemType pop(SqStack* s);
+int pop(SqStack* s,ElemType e);
 
 ElemType GetTop(SqStack* s);
 

@@ -8,14 +8,14 @@ typedef struct node {
 	node* next;
 }StackNode, * LinkStack;
 
-int InitStack(LinkStack* s);
+int InitStack(LinkStack* top);
 
-int StackEmpty(LinkStack* s);
+int StackEmpty(LinkStack* top);
 
-int push(LinkStack* s, ElemType e);
+int push(LinkStack* top, ElemType e);
 
-ElemType pop(LinkStack* s);
+int pop(LinkStack* top, ElemType* e);
 
-ElemType GetTop(LinkStack* s);
+ElemType GetTop(LinkStack* top, ElemType* e);
 
-int DestroyStack(LinkStack* s);
+int DestroyStack(LinkStack* top);

@@ -40,19 +40,18 @@ int main() {
 //}
 
 void testLinkStack() {
-	LinkStack s;
-	InitStack(&s);
-	push(&s, 1);
-	push(&s, 2);
-	push(&s, 3);
-	push(&s, 4);
-	int t=GetTop(&s);
-	printf("stack is empty %d\n", StackEmpty(&s));
-	
-	pop(&s);
+	LinkStack top;
+	InitStack(&top);
+	push(&top, 1);
+	push(&top, 2);
+	push(&top, 3);
+	push(&top, 4);
+	ElemType out;
+	int t=GetTop(&top, &out);
+	printf("stack is empty %d\n", StackEmpty(&top));
+	pop(&top, &out);
+	pop(&top, &out);
+	pop(&top, &out);
+	DestroyStack(&top);
 
-	//DestroyStack(&s);
-	//pop(&s);
-	//pop(&s);
-	//pop(&s);
 }

@@ -1,56 +1,56 @@
 #include"LinkStack.h"
 
-int InitStack(LinkStack* s) {
-	StackNode* p;
-	p = (StackNode*)malloc(sizeof(StackNode));
-	if (p==NULL)
-	{
-		return ERROR;
-	}
-	p->next = NULL;
-	*s = p;
+int InitStack(LinkStack* top) {
+	*top = NULL;
 	return OK;
 }
 
-int StackEmpty(LinkStack* s) {
-	return ((*s) == NULL) ? 0 : 1;
+int StackEmpty(LinkStack* top) {
+	return ((*top) == NULL) ? OK : ERROR;
 }
 
-int push(LinkStack* s, ElemType e) {
-	StackNode* p,*top;
-	top = *s;
+int push(LinkStack* top, ElemType e) {
+	StackNode* p;
 	p = (StackNode*)malloc(sizeof(StackNode));
 	if (p == NULL)
 	{
 		return ERROR;
 	}
 	p->data = e;
-	p->next = top;
-	(*s) = p;
+	p->next = *top;
+	(*top) = p;
 	return	OK;
 }
 
-ElemType pop(LinkStack* s) {
-	StackNode * top;
-	top = *s;
-	ElemType ret = top->data;
-	(*s) = top->next;
-	free(top);
-	return ret;
-}
-
-ElemType GetTop(LinkStack* s) {
-	return (*s)->data;
-}
-
-int DestroyStack(LinkStack* s) {
-	StackNode* p,*top;
-	top = *s;
-	while (top)
+int pop(LinkStack* top, ElemType* e) {
+	StackNode * p;
+	if (*top==NULL)
 	{
-		p = top->next;
-		free(top);
-		top = p;
+		return ERROR;
+	}
+	p = *top;
+	*e= p->data;
+	(*top) = p->next;
+	free(p);
+	return OK;
+}
+
+int GetTop(LinkStack* top, ElemType* e) {
+	if (top==NULL)
+	{
+		return ERROR;
+	}
+	*e=(*top)->data;
+	return OK;
+}
+
+int DestroyStack(LinkStack* top) {
+	StackNode* p;
+	while (*top)
+	{
+		p = (*top)->next;
+		free(*top);
+		*top = p;
 	}
 	return OK;
 }
