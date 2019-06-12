@@ -2,13 +2,13 @@
 
 int InitStack(LinkStack* s) {
 	StackNode* p;
-	p = (StackNode*)malloc(sizeof(ElemType));
+	p = (StackNode*)malloc(sizeof(StackNode));
 	if (p==NULL)
 	{
 		return ERROR;
 	}
 	p->next = NULL;
-	(*s) = p;
+	*s = p;
 	return OK;
 }
 
@@ -19,7 +19,7 @@ int StackEmpty(LinkStack* s) {
 int push(LinkStack* s, ElemType e) {
 	StackNode* p,*top;
 	top = *s;
-	p = (StackNode*)malloc(sizeof(ElemType));
+	p = (StackNode*)malloc(sizeof(StackNode));
 	if (p == NULL)
 	{
 		return ERROR;
