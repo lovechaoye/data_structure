@@ -67,7 +67,8 @@ LinkQueue DeQueue(LinkQueue Q, ElemType* e) {
 	return Q;
 }
 
-int DelQueue(LinkQueue* Q, ElemType* e) {
+
+int DeQueue(LinkQueue* Q, ElemType* e) {
 	Qnode* p;
 	if (Q->front == Q->rear)
 	{
@@ -82,6 +83,21 @@ int DelQueue(LinkQueue* Q, ElemType* e) {
 		Q->rear = Q->front;
 	}
 	free(p);
+	return OK;
+}
+
+int DeQueueV2(LinkQueue* Q, ElemType* e) {
+	Qnode* head,*first;
+	if (Q->front == Q->rear)
+	{
+		printf("Empty queue\n");
+		return ERROR;
+	}
+	head = Q->front;
+	first = head->next;
+	*e = first->data;
+	free(head);
+	Q->front = first;
 	return OK;
 }
 

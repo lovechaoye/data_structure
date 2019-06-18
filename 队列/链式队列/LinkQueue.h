@@ -24,7 +24,7 @@ LinkQueue EnQueue(LinkQueue Q, ElemType e);
 
 int EnQueue(LinkQueue* Q, ElemType e);
 
-LinkQueue DelQueue(LinkQueue Q,ElemType* e);
+LinkQueue DeQueue(LinkQueue Q,ElemType* e);
 
 
 int DeQueue(LinkQueue* Q, ElemType* e);
