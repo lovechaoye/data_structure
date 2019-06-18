@@ -8,6 +8,18 @@ LinkQueue InitLinkQueue() {//初始化一个队列，先初始化它的表头指针
 	return Q;
 }
 
+int InitLinkQueue(LinkQueue* Q) {
+	QNode* p;
+	p = (Qnode*)malloc(LENG);
+	if (p==NULL)
+	{
+		return ERROR;
+	}
+	p->next = NULL;
+	Q->front = Q->rear = p;
+	return OK;
+}
+
 //传入或者返回结构体，会进行更大的内存复制
 LinkQueue EnQueue(LinkQueue Q, ElemType e) {
 	Qnode* p;
@@ -37,7 +49,7 @@ int EnQueue(LinkQueue* Q, ElemType e) {
 	return OK;
 }
 
-LinkQueue DelQueue(LinkQueue Q, ElemType* e) {
+LinkQueue DeQueue(LinkQueue Q, ElemType* e) {
 	Qnode* p;
 	if (Q.front==Q.rear)
 	{
@@ -70,5 +82,25 @@ int DelQueue(LinkQueue* Q, ElemType* e) {
 		Q->rear = Q->front;
 	}
 	free(p);
+	return OK;
+}
+
+int GetQueue(LinkQueue* Q, ElemType* e) {
+	if (Q->front==Q->rear)
+	{
+		printf("Empty queue\n");
+		return ERROR;
+	}
+	*e = Q->front->next->data;
+	return OK;
+}
+
+int DestroyQueue(LinkQueue* Q) {
+	while (Q->front)
+	{
+		Q->rear = Q->front->next;
+		free(Q->front);
+		Q->front = Q->rear;
+	}
 	return OK;
 }

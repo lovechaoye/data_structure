@@ -6,9 +6,9 @@
 #define ERROR 0 
 typedef int ElemType;
 
-typedef struct Qnode{
+typedef struct QNode {
 	ElemType data;
-	Qnode* next;
+	QNode* next;
 }Qnode,*QueuePtr;
 
 typedef struct {
@@ -18,6 +18,8 @@ typedef struct {
 
 LinkQueue InitLinkQueue();
 
+int InitLinkQueue(LinkQueue* Q);
+
 LinkQueue EnQueue(LinkQueue Q, ElemType e);
 
 int EnQueue(LinkQueue* Q, ElemType e);
@@ -25,4 +27,10 @@ int EnQueue(LinkQueue* Q, ElemType e);
 LinkQueue DelQueue(LinkQueue Q,ElemType* e);
 
 
-int DelQueue(LinkQueue* Q, ElemType* e);
+int DeQueue(LinkQueue* Q, ElemType* e);
+
+int QueueEmpty(LinkQueue* Q);
+
+int GetQueue(LinkQueue* Q, ElemType* e);
+
+int DestroyQueue(LinkQueue* Q);
